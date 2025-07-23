@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,58 +17,75 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: judul,
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const ContainerWidget(),
     );
   }
 }
 
-//widget stateles kedua
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  void helloWorld() {
+    print("hello World");
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Judul Appsnya",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+        title: Image(
+          width: 100,
+          image: NetworkImage(
+            "https://storage.googleapis.com/cms-storage-bucket/lockup_flutter_horizontal.c823e53b3a1a7b0d36a9.png",
           ),
         ),
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.person))],
         backgroundColor: Colors.blue,
-        leading: Icon(Icons.menu, color: Colors.white),
-        actions: [Icon(Icons.notifications), Icon(Icons.person)],
+        centerTitle: true,
+        toolbarHeight: 100,
+        toolbarOpacity: 1,
       ),
-      body: Column(
-        children: [
-          Text("Ini Bodynya", style: TextStyle(fontSize: 25)),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-            onPressed: () {},
-            child: Text("Tombol", style: TextStyle(color: Colors.black)),
+      body: Center(
+        child: const Image(
+          fit: BoxFit.cover,
+          height: 400,
+          width: 200,
+          image: NetworkImage(
+            "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg",
           ),
-          ElevatedButton.icon(
-            onPressed:(){},
-            icon: Icon(Icons.send),
-            label: Text("Send Data"),
-            )
-        ],
+        ),
       ),
     );
   }
 }
 
-// class ProfilePage extends StatelessWidget {
-//   const ProfilePage({super.key});
+class ContainerWidget extends StatelessWidget {
+  const ContainerWidget({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: ,
-//       body: ,
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Widget Container"),
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.person))],
+        backgroundColor: Colors.blue,
+      ),
+      body: Container(
+        padding: EdgeInsets.only(left: 20),
+        margin: EdgeInsets.all(20),
+        width: 500,
+        height: 400,
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            bottomLeft: Radius.circular(30),
+          ),
+        ),
+        child: Text("Ini Teks"),
+      ),
+    );
+  }
+}
