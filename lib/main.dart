@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:aplikasi_kedua/practice/layout1.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,11 +18,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: judul,
       debugShowCheckedModeBanner: false,
-      home: const ContainerWidget(),
+      home: const LatihanLayout1(),
     );
   }
 }
 
+//homepage
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -60,6 +62,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
+//Widget Container
 class ContainerWidget extends StatelessWidget {
   const ContainerWidget({super.key});
 
@@ -89,3 +92,86 @@ class ContainerWidget extends StatelessWidget {
     );
   }
 }
+
+//Widget Column
+class ColumnWidget extends StatelessWidget {
+  const ColumnWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        color: Colors.grey,
+        child: Column(
+          spacing: 25, //ini untuk gap antara widget widgetnya
+          crossAxisAlignment:
+              CrossAxisAlignment.start, //mengatur posisi secara horizontal
+          mainAxisAlignment:
+              MainAxisAlignment.start, //mengatur posisi secara vertikal
+          children: [
+            Container(color: Colors.amber, width: 100, height: 100),
+            Container(color: Colors.black, width: 100, height: 100),
+            Container(color: Colors.amber, width: 100, height: 100),
+            Container(color: Colors.black, width: 100, height: 100),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//Widget Row
+class RowWidget extends StatelessWidget {
+  const RowWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // ignore: sized_box_for_whitespace
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: Row(
+          spacing: 10,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(width: 30, height: 30, color: Colors.red),
+            Container(width: 30, height: 30, color: Colors.green),
+            Container(width: 30, height: 30, color: Colors.red),
+            Container(width: 30, height: 30, color: Colors.green),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//widget Wrap
+class WrapWidget extends StatelessWidget {
+  const WrapWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // ignore: sized_box_for_whitespace
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        child: Wrap(
+          spacing: 20,
+          runSpacing: 10,
+          alignment: WrapAlignment.spaceBetween,
+          children: [
+            Container(width: 50, height: 30, color: Colors.red),
+            Container(width: 50, height: 30, color: Colors.green),
+            Container(width: 50, height: 30, color: Colors.red),
+            Container(width: 50, height: 30, color: Colors.green),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
