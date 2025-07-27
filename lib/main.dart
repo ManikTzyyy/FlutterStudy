@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, unused_import
 
 import 'package:aplikasi_kedua/practice/layout1.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: judul,
       debugShowCheckedModeBanner: false,
-      home: const LatihanLayout1(),
+      home: const FlexibelVSExpanded(),
     );
   }
 }
@@ -175,3 +175,99 @@ class WrapWidget extends StatelessWidget {
   }
 }
 
+//widget expanded
+class ExpandedWidget extends StatelessWidget {
+  const ExpandedWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(color: Colors.blue),
+              flex: 2,
+              ),
+            Expanded(
+              flex: 8,
+              child: Container(color: Colors.red, child: Text("Ini container"),)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class FlexibleWidget extends StatelessWidget {
+  const FlexibleWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        color: const Color.fromARGB(255, 221, 221, 221),
+        child: Row(
+          children: [
+            Flexible(
+              child: Container(color: Colors.red,)),
+            Flexible(
+              child: Container(
+                child: Text("Ini flexible"),
+                color: Colors.blue,))
+          ],
+        ),
+        ),
+    );
+  }
+}
+
+class FlexibelVSExpanded extends StatelessWidget {
+  const FlexibelVSExpanded({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 10,
+          children: [
+            Text("Ini adalah expanded"),
+            Row(
+              children: [
+                Expanded(child: Container(color: Colors.red, height: 50,),),
+                Expanded(child: Container(color: Colors.blue, height: 50, child: Text("Hello ini"),),),
+                Expanded(child: Container(color: Colors.green, height: 50,),),
+              ],
+            ),
+            Text("======================="),
+            Text("Ini adalah Flexible"),
+             Row(
+              children: [
+                Flexible(child: Container(color: Colors.red, height: 50,)),
+                Flexible(child: Container(color: Colors.blue, height: 50, child: Text("Hello ini"),),),
+                Flexible(child: Container(color: Colors.green, height: 50,),),
+              ],
+            ),
+            Text("======================="),
+            Text("Ini adalah Container"),
+             Row(
+              children: [
+                 Container(color: Colors.red, height: 50, width: MediaQuery.of(context).size.width*0.5,),
+                 Expanded(child: Container(color: Colors.blue, height: 50,))
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+
+
+
+}
