@@ -1,7 +1,10 @@
 // ignore_for_file: avoid_print, unused_import
 
 import 'package:aplikasi_kedua/practice/layout1.dart';
+import 'package:aplikasi_kedua/scroll-wigdet/listview_singleList.dart';
+import 'package:aplikasi_kedua/scroll-wigdet/page_view.dart';
 import 'package:flutter/material.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: judul,
       debugShowCheckedModeBanner: false,
-      home: const FlexibelVSExpanded(),
+      home: const PageViewWidget(),
     );
   }
 }
