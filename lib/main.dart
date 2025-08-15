@@ -3,10 +3,14 @@
 import 'package:aplikasi_kedua/practice/layout1.dart';
 import 'package:aplikasi_kedua/scroll-wigdet/listview_singleList.dart';
 import 'package:aplikasi_kedua/scroll-wigdet/page_view.dart';
+import 'package:aplikasi_kedua/views/aboutPubspec.dart';
 import 'package:aplikasi_kedua/views/columnWidget.dart';
 import 'package:aplikasi_kedua/views/flexibleVSexpanded.dart';
 import 'package:aplikasi_kedua/views/rowWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:animated_icon_button/animated_icon_button.dart';
+import 'package:rolling_switch/rolling_switch.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,13 +26,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: judul,
+      theme: ThemeData(fontFamily: 'boldini'),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/' : (context) => HomePage(),
-        '/column' : (context) => ColumnWidget(),
-        '/row' : (context) => RowWidget(),
-        '/flex-expand' : (context) => FlexibelVSExpanded()
+        '/': (context) => HomePage(),
+        '/column': (context) => ColumnWidget(),
+        '/row': (context) => RowWidget(),
+        '/flex-expand': (context) => FlexibelVSExpanded(),
+        '/about-pubspec': (context) => AboutPubspec(),
       },
     );
   }
@@ -43,7 +49,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(title: Text("ini Homepage"), backgroundColor: Colors.blue),
       body: Center(
         child: Column(
-          spacing: 10,
+          spacing: 30,
           children: [
             ElevatedButton(
               onPressed: () {
@@ -51,17 +57,40 @@ class HomePage extends StatelessWidget {
               },
               child: Text("halaman column"),
             ),
-             ElevatedButton(
+            ElevatedButton(
               onPressed: () {
-               Navigator.pushNamed(context, '/row');
+                Navigator.pushNamed(context, '/row');
               },
               child: Text("halaman Row"),
             ),
-             ElevatedButton(
+            ElevatedButton(
               onPressed: () {
-               Navigator.pushNamed(context, '/flex-expand');
+                Navigator.pushNamed(context, '/flex-expand');
               },
               child: Text("halaman flexible vs expanded"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/about-pubspec');
+              },
+              child: Text("About pubspec"),
+            ),
+
+            LoadingAnimationWidget.beat(color: Colors.black, size: 100),
+
+            RollingSwitch.icon(
+              onChanged: (bool state) {
+                print('turned ${(state) ? 'on' : 'off'}');
+              },
+              rollingInfoRight: const RollingIconInfo(
+                icon: Icons.flag,
+                text: Text('Flag'),
+              ),
+              rollingInfoLeft: const RollingIconInfo(
+                icon: Icons.check,
+                backgroundColor: Colors.grey,
+                text: Text('Check'),
+              ),
             ),
           ],
         ),
